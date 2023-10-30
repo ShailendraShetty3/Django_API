@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Drink
-from .models import User
+# from .models import User
 
 class DrinkSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,7 +9,7 @@ class DrinkSerializer(serializers.ModelSerializer):
 
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'user_name', 'password']
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ['id', 'user_name', 'password']

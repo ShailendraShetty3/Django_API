@@ -8,9 +8,9 @@ class Drink(models.Model):
         return self.name + ' ' + self.description
     
 
-class User(models.Model):
-    user_name = models.CharField(max_length=200)
-    password = models.CharField(max_length=15)
+# class User(models.Model):
+#     user_name = models.CharField(max_length=200)
+#     password = models.CharField(max_length=15)
 
-    def __str__(self):
-        return self.user_name
+#     def __str__(self):
+#         return self.user_name
