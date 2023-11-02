@@ -1,8 +1,8 @@
 from django.http import JsonResponse
 from .models import Drink
-# from .models import User
+from .models import CustomUser
 from .serializers import DrinkSerializer
-# from .serializers import UserSerializer
+from .serializers import CustomUserSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -45,17 +45,17 @@ def drink_detail(request, id, format=None):
 
 
 
+#user
+@api_view(['GET', 'POST'])
+def user_data(request, format=None):
 
-# @api_view(['GET', 'POST'])
-# def user_data(request, format=None):
+    if request.method == 'GET':
+        user = CustomUser.objects.all()
+        serializer = CustomUserSerializer(user, many=True)
+        return Response(serializer.data)
 
-#     if request.method == 'GET':
-#         user = User.objects.all()
-#         serializer = UserSerializer(user, many=True)
-#         return Response(serializer.data)
-
-#     if request.method == 'POST':
-#         serializer = UserSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+    if request.method == 'POST':
+        serializer = CustomUserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)

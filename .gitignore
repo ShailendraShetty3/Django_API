@@ -1,0 +1,2 @@
+#need to study on this to make sure while pushing into github exclude lib etc
+..\.venv\lib
