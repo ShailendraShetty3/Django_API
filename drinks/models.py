@@ -8,10 +8,12 @@ class Drink(models.Model):
         return self.name + ' ' + self.description
     
 
-class CustomUser(models.Model):
-    user_name = models.EmailField(max_length=200)
-    password = models.CharField(max_length=15)
+
+
+
+class Employee(models.Model):
+    name = models.CharField(max_length=200)
+    role = models.CharField(max_length=500)
 
     def __str__(self):
-        return self.user_name
-    
+        return self.name + ' ' + self.role

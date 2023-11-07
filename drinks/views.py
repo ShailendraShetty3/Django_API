@@ -1,8 +1,9 @@
 from django.http import JsonResponse
 from .models import Drink
-from .models import CustomUser
+from .models import Employee
 from .serializers import DrinkSerializer
-from .serializers import CustomUserSerializer
+from .serializers import EmployeeSerializer
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -45,38 +46,45 @@ def drink_detail(request, id, format=None):
 
 
 
-#user
+
 @api_view(['GET', 'POST'])
-def user_data(request, format=None):
+def employee_list(request, format=None):
 
     if request.method == 'GET':
-        user = CustomUser.objects.all()
-        serializer = CustomUserSerializer(user, many=True)
+        employee = Employee.objects.all()
+        serializer = EmployeeSerializer(employee, many=True)
         return Response(serializer.data)
 
     if request.method == 'POST':
-        serializer = CustomUserSerializer(data=request.data)
+        serializer = EmployeeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
+
 @api_view(['GET', 'PUT', 'DELETE'])
-def user_detail(request, id, format=None):
+def employee_detail(request, id, format=None):
 
     try:
-        user = CustomUser.objects.get(pk=id)
-    except CustomUser.DoesNotExist:
+        employee = Employee.objects.get(pk=id)
+    except Employee.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = CustomUserSerializer(user)
+        serializer = EmployeeSerializer(employee)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        serializer = CustomUserSerializer(user, data=request.data)
+        serializer = EmployeeSerializer(employee, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
-        CustomUser.delete()
+        employee.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+
+
+
