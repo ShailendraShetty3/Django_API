@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-(1pg9wr0n2ko1!c+4_94z*q+k#jzdp*gnyi4h_06bz3n5*ehhc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# For CORS related issues
+ALLOWED_HOSTS = ["*"]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Application definition
@@ -33,13 +36,16 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'rest_framework',
     'drinks',
-    # 'customuser',
+    'drf_yasg', #swagger(yet another swagger generator)
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    "corsheaders",
+
 ]
 
 MIDDLEWARE = [
@@ -50,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = 'drinks.urls'
@@ -126,3 +134,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# SWAGGER_SETTINGS = {
+#     'USE_SESSION_AUTH': False,  # Do not use session authentication
+#     'JSON_EDITOR': True,        # Enable the JSON editor in the Swagger UI
+# }
