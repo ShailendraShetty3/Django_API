@@ -36,6 +36,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 INSTALLED_APPS = [
     'rest_framework',
     'drinks',
+    'events',
     'drf_yasg', #swagger(yet another swagger generator)
     'django.contrib.admin',
     'django.contrib.auth',
